@@ -7,8 +7,12 @@ func NewBitSetMap() *BitSetMap {
 	return &bitSetMap
 }
 
-func (b BitSetMap) Set(position uint32, value bool) {
-	b[position] = value
+func (b *BitSetMap) Set(position uint32, value bool) {
+	if value {
+		(*b)[position] = value
+	} else {
+		delete((*b), position)
+	}
 }
 
 func (b BitSetMap) Get(position uint32) bool {
